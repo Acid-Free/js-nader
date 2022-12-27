@@ -8,6 +8,7 @@ const promptName = async () => {
             type: "input"
         }
     ]);
+    return response;
 };
 
 const promptActions = async () => {
@@ -19,6 +20,7 @@ const promptActions = async () => {
             type: "checkbox"
         }
     ]);
+    return response;
 };
 
 const promptContinue = async () => {
@@ -29,6 +31,7 @@ const promptContinue = async () => {
             type: "confirm"
         }
     ]);
+    return response;
 };
 
 export { promptName, promptActions, promptContinue };
