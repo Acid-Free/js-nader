@@ -1,13 +1,3 @@
-/*
-TODO 
-separate file download options
-connect prompt results to separated download functions
-don't allow file download if pokemon doesn't exist
-clean user input (pokemon name) (e.g. tolowercase, trim, etc)
-- create looping functionality using promptObject continue
-if invalid pokemon name, show that it doesn't exist
-*/
-
 import fsp from "fs/promises";
 import fs from "fs";
 import prompt from "./prompts.js";
