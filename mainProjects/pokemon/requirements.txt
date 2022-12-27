@@ -19,3 +19,11 @@ import fetch from "node-fetch"
 import inquirer from "inquirer"
 import fs from "fs/promises"
 import path from "path"
+
+stats: (pikachu)
+hp: 35
+attack: 55
+defense: 40
+special-attack: 50
+special-defense: 50
+speed: 90
