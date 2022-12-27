@@ -22,11 +22,11 @@ const getPromptObject = async () => {
                 fsp.mkdir(downloadDir);
 
             if (actionResult.actions.includes("Stats"))
-                writeStats(pokemonObject, downloadDir);
+                await writeStats(pokemonObject, downloadDir);
             if (actionResult.actions.includes("Sprites"))
-                writeSprites(pokemonObject, downloadDir);
+                await writeSprites(pokemonObject, downloadDir);
             if (actionResult.actions.includes("Artwork"))
-                writeArtwork(pokemonObject, downloadDir);
+                await writeArtwork(pokemonObject, downloadDir);
         }
 
         const continueResult = await promptContinue();
