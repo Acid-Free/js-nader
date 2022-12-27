@@ -10,7 +10,9 @@ const writeStats = async (pokemonObject, downloadDir) => {
         stats += `${statName}: ${statValue}\n`;
     }
 
-    fsp.writeFile(`${downloadDir}/stats.txt`, stats);
+    const fileDir = `${downloadDir}/stats.txt`;
+    fsp.writeFile(fileDir, stats);
+    console.log("✓", fileDir);
 };
 
 const writeSprites = async (pokemonObject, downloadDir) => {
@@ -24,7 +26,9 @@ const writeSprites = async (pokemonObject, downloadDir) => {
             try {
                 const result = await fetchImage(sprite[1]);
                 const buffer = Buffer.from(await result.arrayBuffer());
-                fsp.writeFile(`${downloadDir}/${sprite[0]}.png`, buffer);
+                const fileDir = `${downloadDir}/${sprite[0]}.png`;
+                fsp.writeFile(fileDir, buffer);
+                console.log("✓", fileDir);
             } catch (e) {
                 // sprites can be null
             }
@@ -36,7 +40,9 @@ const writeArtwork = async (pokemonObject, downloadDir) => {
 
     const result = await fetchImage(pokemonObject["sprites"]["other"]["official-artwork"]["front_default"]);
     const buffer = Buffer.from(await result.arrayBuffer());
-    fsp.writeFile(`${downloadDir}/original-artwork.png`, buffer);
+    const fileDir = `${downloadDir}/original-artwork.png`;
+    fsp.writeFile(fileDir, buffer);
+    console.log("✓", fileDir);
 };
 
 export { writeStats, writeSprites, writeArtwork };
