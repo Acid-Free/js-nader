@@ -44,7 +44,7 @@ const writeSprites = async (pokemonObject, downloadDir) => {
 
     for (const [name, buffer] of Object.entries(spriteBuffers)) {
         const fileDir = `${downloadDir}/${name}.png`;
-        fsp.writeFile(fileDir, buffer);
+        await fsp.writeFile(fileDir, buffer);
         console.log("✓", fileDir);
     }
 };
