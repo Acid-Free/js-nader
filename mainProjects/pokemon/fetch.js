@@ -9,8 +9,7 @@ const fetchPokemon = async (name) => {
 
     try {
         returnObject = await result.json();
-    } catch (e) {
-    }
+    } catch (e) { }
 
     return returnObject;
 };

@@ -1,31 +1,36 @@
 import fsp from "fs/promises";
 import fs from "fs";
-import prompt from "./prompts.js";
+import { promptName, promptActions, promptContinue } from "./prompts.js";
 import fetchPokemon from "./fetch.js";
 import { writeStats, writeSprites, writeArtwork } from "./file-writer.js";
 
 const getPromptObject = async () => {
     while (true) {
-        const promptObject = await prompt();
-        const pokemonObject = await fetchPokemon(promptObject.name.toLowerCase().trim());
+        const nameResult = await promptName();
+        const pokemonObject = await fetchPokemon(nameResult.name.toLowerCase().trim());
         const downloadDir = `./pokemon-storage/${pokemonObject.name}`;
 
         if (Object.keys(pokemonObject).length == 0)
             console.log("Invalid Pokemon name");
         else {
+            console.log("Pokemon found");
+
+            const actionResult = await promptActions();
+
             // creates a new directory if it doesn't exist yet
-            if (!fs.existsSync(`${downloadDir}/`))
+            if (actionResult.actions.length > 0 && !fs.existsSync(`${downloadDir}/`))
                 fsp.mkdir(downloadDir);
 
-            if (promptObject.actions.includes("Stats"))
+            if (actionResult.actions.includes("Stats"))
                 writeStats(pokemonObject, downloadDir);
-            if (promptObject.actions.includes("Sprites"))
+            if (actionResult.actions.includes("Sprites"))
                 writeSprites(pokemonObject, downloadDir);
-            if (promptObject.actions.includes("Artwork"))
+            if (actionResult.actions.includes("Artwork"))
                 writeArtwork(pokemonObject, downloadDir);
         }
 
-        if (!promptObject.continue) {
+        const continueResult = await promptContinue();
+        if (!continueResult.continue) {
             console.log("Terminating...");
             break;
         }
