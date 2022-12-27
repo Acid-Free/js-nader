@@ -11,4 +11,10 @@ const fetchPokemon = async (name) => {
     return returnObject;
 };
 
+const fetchImage = async (url) => {
+    const result = await fetch(url);
+    return result;
+};
+
+export { fetchImage };
 export default fetchPokemon;
