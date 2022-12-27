@@ -21,12 +21,16 @@ const getPromptObject = async () => {
             if (actionResult.actions.length > 0 && !fs.existsSync(`${downloadDir}/`))
                 fsp.mkdir(downloadDir);
 
+            const actions = [];
+
             if (actionResult.actions.includes("Stats"))
-                await writeStats(pokemonObject, downloadDir);
+                actions.push(writeStats(pokemonObject, downloadDir));
             if (actionResult.actions.includes("Sprites"))
-                await writeSprites(pokemonObject, downloadDir);
+                actions.push(writeSprites(pokemonObject, downloadDir));
             if (actionResult.actions.includes("Artwork"))
-                await writeArtwork(pokemonObject, downloadDir);
+                actions.push(writeArtwork(pokemonObject, downloadDir));
+
+            await Promise.all(actions);
         }
 
         const continueResult = await promptContinue();
