@@ -1,5 +1,4 @@
 import fsp from "fs/promises";
-import { url } from "inspector";
 import { fetchImage } from "./fetch.js";
 
 const writeStats = async (pokemonObject, downloadDir) => {
