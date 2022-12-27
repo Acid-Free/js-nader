@@ -1,6 +1,0 @@
-hp: 20
-attack: 40
-defense: 15
-special-attack: 35
-special-defense: 35
-speed: 60
