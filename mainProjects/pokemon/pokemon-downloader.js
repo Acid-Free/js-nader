@@ -34,6 +34,9 @@ const getPromptObject = async () => {
         }
 
     // artwork
+    const result = await fetchImage(pokemonObject["sprites"]["other"]["official-artwork"]["front_default"]);
+    const buffer = Buffer.from(await result.arrayBuffer());
+    fsp.writeFile(`${downloadDir}/original-artwork.png`, buffer);
 };
 
 getPromptObject()
