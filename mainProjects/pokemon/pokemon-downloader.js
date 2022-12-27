@@ -17,22 +17,26 @@ import { writeStats, writeSprites, writeArtwork } from "./file-writer.js";
 const getPromptObject = async () => {
     while (true) {
         const promptObject = await prompt();
-        const pokemonObject = await fetchPokemon(promptObject.name);
+        const pokemonObject = await fetchPokemon(promptObject.name.toLowerCase().trim());
         const downloadDir = `./pokemon-storage/${pokemonObject.name}`;
 
-        // creates a new directory if it doesn't exist yet
-        if (!fs.existsSync(`${downloadDir}/`))
-            fsp.mkdir(downloadDir);
+        if (Object.keys(pokemonObject).length == 0)
+            console.log("Invalid Pokemon name");
+        else {
+            // creates a new directory if it doesn't exist yet
+            if (!fs.existsSync(`${downloadDir}/`))
+                fsp.mkdir(downloadDir);
 
-        if (promptObject.actions.includes("Stats"))
-            writeStats(pokemonObject, downloadDir);
-        if (promptObject.actions.includes("Sprites"))
-            writeSprites(pokemonObject, downloadDir);
-        if (promptObject.actions.includes("Artwork"))
-            writeArtwork(pokemonObject, downloadDir);
+            if (promptObject.actions.includes("Stats"))
+                writeStats(pokemonObject, downloadDir);
+            if (promptObject.actions.includes("Sprites"))
+                writeSprites(pokemonObject, downloadDir);
+            if (promptObject.actions.includes("Artwork"))
+                writeArtwork(pokemonObject, downloadDir);
+        }
 
         if (!promptObject.continue) {
-            console.log("break!");
+            console.log("Terminating...");
             break;
         }
     }

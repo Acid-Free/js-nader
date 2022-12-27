@@ -1,11 +1,15 @@
 const fetchPokemon = async (name) => {
+
     const result = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
     let returnObject = {};
+
+    // name.length => 0 returns all pokemon entries
+    if (name.length === 0)
+        return returnObject;
 
     try {
         returnObject = await result.json();
     } catch (e) {
-        returnObject = { name: "MissingNo." };
     }
 
     return returnObject;
