@@ -20,4 +20,4 @@ animal.__proto__.yeah = () => {
 
 // animal.speak();
 
-console.log(Object.prototype);
+console.log(Object.__proto__);
