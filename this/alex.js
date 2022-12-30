@@ -21,4 +21,11 @@ const alex = {
 // alex.arrowGreet();
 alex.friend.greet.call({ name: "Rob" }, 'a, ', 2, false, null, undefined);
 
-console.log(Object.getOwnPropertyNames(Object.prototype));
+// console.log(Object.getOwnPropertyNames(Object.prototype));
+
+const boundGreet = alex.greet.bind({ name: "George", age: 19 });
+
+boundGreet();
+
+alex.greet = alex.greet.bind({ name: "Iron Man" });
+alex.greet();
