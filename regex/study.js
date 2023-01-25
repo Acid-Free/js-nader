@@ -7,8 +7,11 @@ const regex = /the/gi;
 // console.log(sentence.match(regex));
 
 const results = sentence.matchAll(regex);
-let result;
-do {
-    result = results.next();
-    console.log(result);
-} while (!result.done);
+// let result;
+// do {
+//     result = results.next();
+//     console.log(result);
+// } while (!result.done);
+
+for (result of results)
+    console.log(result)
